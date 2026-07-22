@@ -1,0 +1,51 @@
+﻿<Window x:Class="Behaviors.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Behaviors"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        x:Name="Wnd_Main">
+    <StackPanel>
+
+        <Label x:Name="Lbl_Drag" Background="LightBlue" FontSize="20" Content="Drag Me" Margin="20" HorizontalAlignment="Center" Panel.ZIndex="10">
+            <behaviors:Interaction.Behaviors>
+                <behaviors:MouseDragElementBehavior DragBegun="MouseDragElementBehavior_DragBegun" DragFinished="MouseDragElementBehavior_DragFinished"/>
+            </behaviors:Interaction.Behaviors>
+        </Label>
+        
+        <Label Background="LightGreen" FontSize="20" Content="PlayWithMe" Margin="20" HorizontalAlignment="Center" Panel.ZIndex="10">
+            <behaviors:Interaction.Behaviors>
+                <behaviors:TranslateZoomRotateBehavior SupportedGestures="All" ConstrainToParentBounds="True"/>
+            </behaviors:Interaction.Behaviors>
+        </Label>
+
+        <ScrollViewer Height="200">
+            <ItemsControl>
+                <Button Content="Monday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Tuesday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Wednesday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Thursday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Friday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Saturday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Sunday" Height="70" Width="800" Margin="10"/>
+            </ItemsControl>
+        </ScrollViewer>
+        <ScrollViewer Height="200">
+            <behaviors:Interaction.Behaviors>
+                <local:SmoothScrollViewerBehavior/>
+            </behaviors:Interaction.Behaviors>
+            <ItemsControl>
+                <Button Content="Monday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Tuesday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Wednesday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Thursday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Friday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Saturday" Height="70" Width="800" Margin="10"/>
+                <Button Content="Sunday" Height="70" Width="800" Margin="10"/>
+            </ItemsControl>
+        </ScrollViewer>
+    </StackPanel>
+</Window>

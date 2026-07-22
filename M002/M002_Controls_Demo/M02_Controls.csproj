@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF><ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\ppedv.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\ppedv.bmp" />
+  </ItemGroup>
+
+</Project>

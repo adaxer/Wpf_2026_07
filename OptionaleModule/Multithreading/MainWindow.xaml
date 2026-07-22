@@ -1,0 +1,105 @@
+﻿<Window x:Class="Multithreading.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Multithreading"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Width="800"
+        SizeToContent="Height">
+    
+    <StackPanel Margin="5">
+        <Button x:Name="Btn_Reset"
+                Content="Reset"
+                Click="Btn_Reset_Click"/>
+        
+        <TextBlock FontSize="18" FontWeight="Bold" Margin="10"
+                       HorizontalAlignment="Center">TPL-Beispiele</TextBlock>
+
+        <Button x:Name="Btn_ShortTask"
+                Content="Short Running Task"
+                Click="Btn_ShortTask_Click"/>
+        <TextBlock x:Name="Tbl_ShortTask" HorizontalAlignment="Center"/>
+
+        <Button x:Name="Btn_LongTaskWithFreeze"
+                Content="Long Running Task (Freeze, wrong)"
+                Click="Btn_LongTaskWithFreeze_Click"/>
+        <TextBlock x:Name="Tbl_LongTaskWithFreeze" HorizontalAlignment="Center"/>
+        
+        <Button x:Name="Btn_LongTaskWithDispatcher"
+                Content="Long Running Task (Dispatcher)"
+                Click="Btn_LongTaskWithDispatcher_Click"/>
+        <TextBlock x:Name="Tbl_LongTaskWithDispatcher" HorizontalAlignment="Center"/>
+        
+        <Button x:Name="Btn_LongTaskWithAsync"
+                Content="Long Running Task (Async)"
+                Click="Btn_LongTaskWithAsync_Click"/>
+        <TextBlock x:Name="Tbl_LongTaskWithAsync" HorizontalAlignment="Center"/>
+        
+        <Button x:Name="Btn_LongTasksMulti"
+                Content="Long Running Tasks (Multi)"
+                Click="Btn_LongTasksMulti_Click"/>
+        <TextBlock x:Name="Tbl_LongTasksMulti" HorizontalAlignment="Center"/>
+
+        
+        <StackPanel x:Name="Spl_PriorityBinding"
+                    HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel.DataContext>
+                <local:AsyncDataSource/>
+            </StackPanel.DataContext>
+            
+            <TextBlock FontSize="18" FontWeight="Bold" Margin="10"
+                       HorizontalAlignment="Center">Priority Binding und IsAsync</TextBlock>
+
+            <TextBlock Text="{Binding SlowestDP, IsAsync=True, FallbackValue='Not Processed'}" Margin="2" HorizontalAlignment="Center"/>
+
+            <TextBlock HorizontalAlignment="Center" Margin="2">
+                <TextBlock.Text>
+                    <PriorityBinding FallbackValue="defaultvalue">
+                        <Binding Path="SlowestDP" IsAsync="True"/>
+                        <Binding Path="SlowerDP" IsAsync="True"/>
+                        <Binding Path="FastDP" />
+                    </PriorityBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            
+        </StackPanel>       
+      
+
+        <StackPanel x:Name="Spl_DispatcherBsp">  
+            
+            <TextBlock FontSize="18" FontWeight="Bold" Margin="10"
+                       HorizontalAlignment="Center">Dispatcher-Beispiel</TextBlock>
+            
+            <Button x:Name="Btn_AskForWeatherForecast"
+                    Content="Fetch Forecast"
+                    Margin="2"
+                    Click="Btn_AskForWeatherForecast_Click"/>
+            <ProgressBar x:Name="Pgb_WaitForWeatherForecast" 
+                         Height="10"
+                         Margin="2"/>
+            <Label x:Name="Lbl_WeatherForecast" 
+                   HorizontalAlignment="Center"
+                   Margin="2"
+                   Content=""/>
+        </StackPanel>
+
+        <StackPanel x:Name="Spl_DispatcherTimer" Orientation="Horizontal" HorizontalAlignment="Center">
+
+            <TextBlock FontSize="18" FontWeight="Bold" Margin="10"
+                       HorizontalAlignment="Center">DispatcherTimer-Beispiel</TextBlock>
+
+            <Button x:Name="Btn_StartTimer"
+                    Content="Start" Margin="2"
+                    Click="Btn_StartTimer_Click"/>
+            <TextBlock x:Name="Tbl_Timer" Margin="2"
+                       VerticalAlignment="Center"
+                       Width="100"
+                       TextAlignment="Center"/>
+            <Button x:Name="Btn_StopTimer"
+                    Content="Stop" Margin="2"
+                    Click="Btn_StopTimer_Click"/>
+        </StackPanel>
+
+    </StackPanel>
+</Window>

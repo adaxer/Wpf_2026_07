@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF><ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Lab03_Loesung</AssemblyName>
+    <RootNamespace>Lab03_Loesung</RootNamespace>
+  </PropertyGroup>
+
+</Project>

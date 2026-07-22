@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<node type="SPDependencies" Name="SPDependencies">
+  <node type="StoredProc" Name="SP1">
+    <node type="OperationType" Name="Type1">
+      <node type="TableName" Name="Table1"/>
+    </node>
+    <node type="OperationType" Name="Type2">
+      <node type="TableName" Name="Table1"/>
+    </node>
+  </node>
+  <node type="StoredProc" Name="SP2">
+    <node type="OperationType" Name="Type1">
+    </node>
+  </node>
+</node>

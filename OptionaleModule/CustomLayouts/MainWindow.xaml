@@ -1,0 +1,54 @@
+﻿<Window x:Class="CustomLayouts.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomLayouts"
+        xmlns:cc="clr-namespace:CustomControls;assembly=M21_CustomControls_optional"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="239" Width="729">
+    <Grid>
+        <local:MySimplePanel>
+
+            <Button Content="Button1"/>
+            <Button Content="Button2" Height="50" Width="100"/>
+            <Button Content="Button3" Height="50" Width="100"/>
+            <Button Content="Button4" Height="50" Width="100"/>
+            <Button Content="Button5" Height="50" Width="100"/>
+            
+            <cc:PopupControl>
+                <!--<cc:PopupControl.Template>
+                    <ControlTemplate>
+                        
+                    </ControlTemplate>
+                </cc:PopupControl.Template>-->
+                
+                <TextBlock Text="HALLO" Width="60" Height="20" Background="Red"/>
+
+                <cc:PopupControl.PopupContent>
+                    <TextBlock Text="POPUP"/>
+                </cc:PopupControl.PopupContent>
+            </cc:PopupControl>
+        </local:MySimplePanel>
+        
+        <!--<local:ColumnedPanel >            
+            <Rectangle Fill="Black" Width="50" Height="50" Margin="10"/>
+            <Rectangle Fill="Blue" Width="50" Height="50" Margin="10"/>
+            <Rectangle Fill="Green" Width="50" Height="50" Margin="10"/>
+            <Rectangle Fill="Yellow" Width="50" Height="50" Margin="10"/>
+            <Rectangle Fill="Red" Width="50" Height="50" Margin="10"/>
+            --><!--Without the DP ColumnedPanel.ColumnBreakBefore set here,
+               this button would fit in the current column--><!--
+
+            <Button local:ColumnedPanel.ColumnBreakBefore="True"
+                  FontWeight="Bold" Width="80" Height="80">New Column</Button>
+            
+            <Rectangle Fill="Black" Width="50" Height="50" Margin="10"/>
+            <Rectangle Fill="LightBlue" Width="50" Height="50" Margin="10"/>
+            <Rectangle Fill="LightGreen" Width="50" Height="50" Margin="10"/>
+            <Rectangle Fill="LightYellow" Width="50" Height="50" Margin="10"/>
+            <Rectangle Fill="LightSalmon" Width="50" Height="50" Margin="10"/>
+            <Rectangle Fill="Pink" Width="50" Height="50" Margin="10"/>
+        </local:ColumnedPanel>-->
+    </Grid>
+</Window>

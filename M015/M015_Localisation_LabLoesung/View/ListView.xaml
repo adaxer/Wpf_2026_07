@@ -1,0 +1,104 @@
+﻿<Window x:Class="MVVM_Personenverwaltung.View.ListView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM_Personenverwaltung.View"
+        xmlns:vm="clr-namespace:MVVM_Personenverwaltung.ViewModel"
+        xmlns:conv="clr-namespace:MVVM_Personenverwaltung.Converter"
+        xmlns:main="clr-namespace:MVVM_Personenverwaltung"
+        xmlns:loc="clr-namespace:MVVM_Personenverwaltung.Localisation"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        Title="{x:Static loc:Strings.Title_Text}" Height="450" Width="800"
+        Style="{StaticResource Sty_Wnd}">
+
+    <!--Das zugehörige ViewModel dient dieser Seite als DatenKontext-->
+    <Window.DataContext>
+        <vm:ListViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <conv:ColorToBrushConverter x:Key="color2brush"/>
+        <conv:GenderLocalisationConverter x:Key="genderLoc"/>
+    </Window.Resources>
+
+    <DockPanel Margin="5">
+
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="{x:Static loc:Strings.LV_MeiDatei_Header}">
+                <MenuItem x:Name="Mei_Beenden"
+                          Header="{x:Static loc:Strings.LV_MeiBeenden_Header}"
+                          Command="{Binding SchliessenCmd}"/>
+            </MenuItem>
+            <MenuItem Header="{x:Static loc:Strings.LV_MeiSprache_Header}">
+                <MenuItem x:Name="Mei_Deutsch"
+                          Header="{x:Static loc:Strings.LV_MeiDeutsch_Header}"
+                          Command="{Binding SpracheAendernCmd}"
+                          CommandParameter="{x:Static main:Sprache.Deutsch}"/>
+                <MenuItem x:Name="Mei_Englisch"
+                          Header="{x:Static loc:Strings.LV_MeiEnglisch_Header}"
+                          Command="{Binding SpracheAendernCmd}"
+                          CommandParameter="{x:Static main:Sprache.Englisch}"/>
+            </MenuItem>
+        </Menu>
+
+        <WrapPanel DockPanel.Dock="Bottom"
+                   HorizontalAlignment="Right"
+                   Margin="10,0,10,5">
+            <Button x:Name="Btn_Neu"
+                    Content="{x:Static loc:Strings.LV_BtnNeu_Content}"
+                    Command="{Binding NeuCmd}"/>
+            <!--Der Aendern- und der Loeschen-Command übergaben als Parameter das in dem DataGrid ausgewählte Objekt-->
+            <Button x:Name="Btn_Aendern"
+                    Content="{x:Static loc:Strings.LV_BtnAendern_Content}"
+                    Command="{Binding AendernCmd}"
+                    CommandParameter="{Binding ElementName=Dgd_Personen, Path=SelectedItem}"/>
+            <Button x:Name="Btn_Loeschen"
+                    Content="{x:Static loc:Strings.LV_BtnLoeschen_Content}"
+                    Command="{Binding LoeschenCmd}"
+                    CommandParameter="{Binding ElementName=Dgd_Personen, Path=SelectedItem}"/>
+        </WrapPanel>
+
+        <!--DataGrids werden zur Visualisierung komplexer Datenlisten verwendet. Die ItemSource-Property ist
+        über eine Kurzbindung an den DataContext gebunden. Die einzelnen Eigenschaften der Objekte (vgl. die
+        Column-Einträge) sind per Kurzbindungen an die ItemSource gebunden.
+        Mit AutoGenerateColumns="False" verhindert man eine automatische Generierung der Spalten.
+        IsReadOnly="True" führen dazu, dass der Benutzer die Einträge nicht direkt bearbeiten kann.
+        Setzt man sowohl Background, als auch AlternatingRowBackground, wechseln sich die Zeilen ihre Farbe
+        betreffend ab.-->
+        <DataGrid x:Name="Dgd_Personen"
+                  Margin="10"
+                  ItemsSource="{Binding Personenliste}"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False">
+
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="MouseDoubleClick">
+                    <b:InvokeCommandAction Command="{Binding AendernCmd}"
+                                           CommandParameter="{Binding ElementName=Dgd_Personen, Path=SelectedItem}"/>
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
+
+            <!--In der Columns-Property definiert man die benötigten Spalten und bindet diese an die ItemSource-->
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="{x:Static loc:Strings.M_Person_Vorname}" Binding="{Binding Vorname}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static loc:Strings.M_Person_Nachname}" Binding="{Binding Nachname}" Width="*"/>
+                <DataGridTextColumn Header="{x:Static loc:Strings.M_Person_Geschlecht}" Binding="{Binding Geschlecht, Converter={StaticResource genderLoc}}" Width="Auto"/>
+                <DataGridTextColumn Header="{x:Static loc:Strings.M_Person_Geburtsdatum}" Binding="{Binding Geburtsdatum, StringFormat=dd.MM.yyyy}" Width="Auto"/>
+                <DataGridTextColumn Header="{x:Static loc:Strings.M_Person_Kinder}" Binding="{Binding Kinder}" Width="Auto"/>
+                <DataGridTextColumn Header="{x:Static loc:Strings.M_Person_Lieblingsfarbe}" Binding="{Binding Lieblingsfarbe}" Width="Auto">
+                    <!--Mithilfe der CellStyle-Property können die Styles von Zellen angepasst werden-->
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="Background" Value="{Binding Lieblingsfarbe, Converter={StaticResource color2brush}}"/>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridCheckBoxColumn Header="{x:Static loc:Strings.M_Person_Verheiratet}" Binding="{Binding Verheiratet}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+
+</Window>
+

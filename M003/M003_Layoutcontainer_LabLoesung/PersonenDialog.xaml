@@ -1,0 +1,113 @@
+﻿<Window x:Class="Lab03_Loesung.PersonenDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lab03_Loesung"
+        mc:Ignorable="d"
+        Title="Neue Person" 
+        Height="275" Width="285" ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" Topmost="True"
+        FontSize="14.0">
+
+    <Window.Background>
+        <LinearGradientBrush>
+            <GradientStop Color="LightYellow" Offset="0"/>
+            <GradientStop Color="Orange" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Vorname:"
+                   VerticalAlignment="Center"
+                   Margin="0,0,5,0"/>
+        <TextBlock Text="Nachname:" 
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   Margin="0,0,5,0"/>
+        <TextBlock Text="Geburtsdatum:" 
+                   Grid.Row="2"
+                   VerticalAlignment="Center"
+                   Margin="0,0,5,0"/>
+        <TextBlock Text="Verheiratet:" 
+                   Grid.Row="3"
+                   VerticalAlignment="Center"
+                   Margin="0,0,5,0"/>
+        <TextBlock Text="Lieblingsfarbe:" 
+                   Grid.Row="4"
+                   VerticalAlignment="Center"
+                   Margin="0,0,5,0"/>
+        <TextBlock Text="Geschlecht:" 
+                   Grid.Row="5"
+                   VerticalAlignment="Top"
+                   Margin="0,0,5,0"/>
+
+        <TextBox x:Name="Tbx_Vorname"
+                 Grid.Column="1"
+                 Margin="2"/>
+
+        <TextBox x:Name="Tbx_Nachname"
+                 Grid.Column="1" Grid.Row="1"
+                 Margin="2"/>
+
+        <DatePicker x:Name="Dpr_Geburtsdatum"
+                    Grid.Column="1" Grid.Row="2"
+                    VerticalAlignment="Center"
+                    Margin="2"/>
+
+        <CheckBox x:Name="Cbx_Verheiratet"
+                  Grid.Column="1" Grid.Row="3"
+                  VerticalAlignment="Center"
+                  Margin="2"/>
+
+        <ComboBox x:Name="Cbb_Lieblingsfarbe"
+                  Grid.Column="1" Grid.Row="4"
+                  VerticalAlignment="Center"
+                  Margin="2">
+            <ComboBoxItem Content="Grün" Foreground="Green"/>
+            <ComboBoxItem Content="Blau" Foreground="Blue"/>
+            <ComboBoxItem Content="Rot" Foreground="Red"/>
+            <ComboBoxItem Content="Gelb" Foreground="Yellow"/>
+        </ComboBox>
+
+        <StackPanel Margin="2"
+                    Grid.Column="1" Grid.Row="5">
+            <RadioButton Content="M"
+                         GroupName="Rbg_Gender"
+                         VerticalContentAlignment="Center"/>
+            <RadioButton Content="W"
+                         GroupName="Rbg_Gender"
+                         VerticalContentAlignment="Center"/>
+            <RadioButton Content="D"
+                         GroupName="Rbg_Gender"
+                         VerticalContentAlignment="Center"/>
+        </StackPanel>
+
+        <WrapPanel Grid.Row="6" Grid.ColumnSpan="2"
+                   HorizontalAlignment="Right" Margin="0,5">
+            <Button x:Name="Btn_Ok"
+                    Content="OK"
+                    Width="100"
+                    Margin="5,0,0,0"/>
+            <Button x:Name="Btn_Abbruch"
+                    Content="Abbrechen"
+                    Width="100"
+                    Margin="5,0,0,0"/>
+        </WrapPanel>
+    </Grid>
+</Window>
+

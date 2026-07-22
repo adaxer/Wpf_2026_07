@@ -1,0 +1,9 @@
+﻿<Application x:Class="M14_MVVM.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:M14_MVVM"
+             StartupUri="View/StartView.xaml">
+    <Application.Resources>
+        <ResourceDictionary Source="GlobalResources.xaml"/>
+    </Application.Resources>
+</Application>

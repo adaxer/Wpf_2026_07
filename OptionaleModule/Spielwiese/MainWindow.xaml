@@ -1,0 +1,109 @@
+﻿<Window x:Class="Spielwiese.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Spielwiese"
+        xmlns:anim="clr-namespace:Lab16_Loesung;assembly=Lab16_Loesung"
+        xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        mc:Ignorable="d"
+        xmlns:cc="clr-namespace:CustomControls;assembly=M21_CustomControls_optional"
+        Title="MainWindow" Height="120" Width="317" WindowStartupLocation="CenterScreen"
+        ><!--FontFamily="./Fonts/#From Cartoon Blocks"-->
+    <Window.Resources>
+        <sys:String x:Key="NumberFormat">F8</sys:String>
+        <FontFamily x:Key="myFont">./Fonts/#From Cartoon Blocks</FontFamily>
+        <!--<Style TargetType="Button">
+            <Setter Property="FontFamily" Value="{StaticResource myFont}"/>
+        </Style>-->
+    </Window.Resources>
+
+    <StackPanel>
+        <!--<TextBox x:Name="Tbx_Test" Text="{Binding TheNumber, StringFormat=F8}"/>
+        <Button x:Name="Btn_Change" Content="Change" Click="Btn_Change_Click"/>
+
+
+        <cc:PopupControl>
+            <cc:PopupControl.Template>
+                <ControlTemplate TargetType="{x:Type cc:PopupControl}">
+                    <ContentPresenter>
+                        <ContentPresenter.ToolTip>
+                            <ContentPresenter Content="{TemplateBinding PopupContent}"/>
+                        </ContentPresenter.ToolTip>
+                    </ContentPresenter>
+                </ControlTemplate>
+            </cc:PopupControl.Template>
+
+
+            <TextBlock Text="Show Me Your Popup" HorizontalAlignment="Center"/>
+
+            <cc:PopupControl.PopupContent>
+                <TextBlock Text="I'm Your Popup"
+                           Background="Aqua"/>
+            </cc:PopupControl.PopupContent>
+
+        </cc:PopupControl>
+
+
+        <TextBox local:TextblockExtension.AllowOnlyString="True"/>
+
+        <TextBox x:Name="Tbx_Tooltip"/>
+        <ComboBox x:Name="Cbb_Tooltip">
+            <ComboBoxItem Content="1"/>
+            <ComboBoxItem Content="2"/>
+            <ComboBoxItem Content="3"/>
+            <ComboBoxItem Content="Alle"/>
+        </ComboBox>
+        <Button x:Name="Btn_Tooltip" Content="Klick">
+            <Button.ToolTip>
+                <ToolTip>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="Nach Auftrag {0} und Pos. {1} suchen">
+                                <Binding Source="{x:Reference Tbx_Tooltip}" Path="Text"/>
+                                <Binding Source="{x:Reference Cbb_Tooltip}" Path="Text"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </ToolTip>
+            </Button.ToolTip>
+        </Button>
+
+        <Grid Grid.IsSharedSizeScope="True">
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="FontFamily" Value="Arial"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition SharedSizeGroup="Button"/>
+                <ColumnDefinition SharedSizeGroup="Button"/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Test_01" Grid.Column="1"/>
+            <Button Content="Test" Grid.Column="2"/>
+        </Grid>
+
+
+        <StackPanel x:Name="Spl_Behaviors">
+            <Label x:Name="Lbl_Drag" Content="TEST DRAG-BEHAVIORS" HorizontalAlignment="Center">
+                <b:Interaction.Behaviors>
+                    <b:MouseDragElementBehavior/>
+                </b:Interaction.Behaviors>
+            </Label>
+            <Label x:Name="Lbl_Rotate" Content="TEST ROTATE-BEHAVIORS" HorizontalAlignment="Center">
+                <b:Interaction.Behaviors>
+                    <local:RotateOnClickBehavior/>
+                </b:Interaction.Behaviors>
+            </Label>
+            <TextBox x:Name="Tbx_DigityOnly" local:DigitsOnlyBehavior.IsDigitOnly="true"/>
+        </StackPanel>-->
+
+        <Button>Button 1</Button>
+        <Button Height="60" Width="60" Margin="100">Button 2</Button>
+        <Button MaxWidth="150">Button 3</Button>
+        
+
+    </StackPanel>
+</Window>

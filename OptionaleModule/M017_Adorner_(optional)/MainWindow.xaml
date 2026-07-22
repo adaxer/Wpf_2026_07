@@ -1,0 +1,17 @@
+﻿<Window x:Class="M017_Adorner__optional_.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:M017_Adorner__optional_"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="188" Width="229">
+    <StackPanel Margin="20">
+        
+        <!--Adorner sind "visuelle Erweiterungen" von Steuerelemente, welche bei Bedarf in einem sog.
+        AdornerLayer ÜBER die bestehenden Elemente drübergezeichnet werden. Dafür haben die meißten
+        UIElemente ein AdornerLayer, in welches diese eingefügt werden können. Vgl. CodeBehind-->
+        <TextBox x:Name="Tbx_Show" Width="80" HorizontalAlignment="Center"/>
+
+    </StackPanel>
+</Window>

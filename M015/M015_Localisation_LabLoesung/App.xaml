@@ -1,0 +1,10 @@
+﻿<Application x:Class="Lab1314_Lösung.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Lab1314_Lösung"
+             StartupUri="View/StartView.xaml">
+    <Application.Resources>
+        <ResourceDictionary Source="GlobalResources.xaml"/>
+    </Application.Resources>
+</Application>
+
