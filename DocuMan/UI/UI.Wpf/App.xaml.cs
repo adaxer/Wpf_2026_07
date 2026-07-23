@@ -1,13 +1,11 @@
 ﻿using System.Windows;
 
+using DocuMan.Domain.Models.Interfaces;
+using DocuMan.Infrastructure.Services;
 using DocuMan.UI.Common.Interfaces;
 using DocuMan.UI.Common.ViewModels;
 using DocuMan.UI.Wpf.Services;
 using DocuMan.UI.Wpf.Views;
-
-using Domain.Models.Interfaces;
-
-using Infrastructure.Services;
 
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +26,8 @@ public partial class App : Application
         builder.Services.AddSingleton<MainWindow>();
         builder.Services.AddSingleton<MainViewModel>();
         builder.Services.AddSingleton<StatusBarViewModel>();
-        builder.Services.AddSingleton<DocumentsViewModel>();
+        builder.Services.AddSingleton<ModuleHostViewModel>();
+        builder.Services.AddSingleton<DocumentListViewModel>();
 
         builder.Services.AddTransient<IPdfDocumentService,PdfDocumentService>();
         builder.Services.AddSingleton<IPubSubService, WpfPubSubService>();  // Besser Singleton, weil Registrierung von EventHandlern usw.

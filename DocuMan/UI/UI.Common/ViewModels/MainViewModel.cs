@@ -9,19 +9,23 @@ public partial class MainViewModel : ViewModelBase
 {
     private readonly IPubSubService _pubSubService;
    
-    public MainViewModel(StatusBarViewModel statusBar, DocumentsViewModel documents, IPubSubService pubSubService)
+    public MainViewModel(StatusBarViewModel statusBar, DocumentListViewModel documents, ModuleHostViewModel moduleHost, IPubSubService pubSubService)
     {
         StatusBar = statusBar;
         Documents = documents;
+        ModuleHost = moduleHost;
         _pubSubService = pubSubService;
         _pubSubService.Publish(new StatusMessage("MainViewModel Ready"));
         Title = "DocuMan";
     }
 
     [ObservableProperty]
+    private ModuleHostViewModel _moduleHost;
+
+    [ObservableProperty]
     private StatusBarViewModel _statusBar;
 
     [ObservableProperty]
-    private DocumentsViewModel _documents;
+    private DocumentListViewModel _documents;
 
 }

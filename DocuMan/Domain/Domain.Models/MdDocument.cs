@@ -1,4 +1,4 @@
-﻿namespace Domain.Models;
+﻿namespace DocuMan.Domain.Models;
 
 public class MdDocument
 {

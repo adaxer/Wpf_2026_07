@@ -1,21 +1,21 @@
 ﻿using System.Diagnostics;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
+using DocuMan.Domain.Models;
+using DocuMan.Domain.Models.Interfaces;
 using DocuMan.UI.Common.Interfaces;
 using DocuMan.UI.Common.Messages;
 
-using Domain.Models;
-using Domain.Models.Interfaces;
-
 namespace DocuMan.UI.Common.ViewModels;
 
-public partial class DocumentsViewModel : ViewModelBase
+public partial class DocumentListViewModel : ViewModelBase
 {
     private readonly IPdfDocumentService _pdfDocumentService;
     private readonly IPubSubService _pubSubService;
 
-    public DocumentsViewModel(IPdfDocumentService pdfDocumentService, IPubSubService pubSubService)
+    public DocumentListViewModel(IPdfDocumentService pdfDocumentService, IPubSubService pubSubService)
     {
         _pdfDocumentService = pdfDocumentService;
         _pubSubService = pubSubService;
@@ -23,19 +23,32 @@ public partial class DocumentsViewModel : ViewModelBase
     }
 
     [ObservableProperty]
-    private List<PdfDocument> _pdfDocuments = [];
+    private List<ItemViewModel> _pdfDocuments = [];
+
+    [ObservableProperty]
+    private List<NodeViewModel> _documents = [new NodeViewModel("Pdf-Dokumente", []), new NodeViewModel("MD-Dokumente", [])];
 
     private async void GetDocuments()
     {
         try
         {
             var pdfDocuments = await _pdfDocumentService.GetDocumentsAsync();
-            PdfDocuments = pdfDocuments.ToList();
+            PdfDocuments = pdfDocuments.Select(d=>new ItemViewModel(d.Name, d)).ToList();
+            Documents?.First().Children = PdfDocuments;
         }
         catch (Exception ex)
         {
             Trace.TraceError("Error retrieving documents: {0}", ex);
             _pubSubService.Publish(new StatusMessage(ex.Message));
+        }
+    }
+
+    [RelayCommand]
+    public void ShowDocument(ItemViewModel container)
+    {
+        if (container.Item is PdfDocument pdfDocument)
+        {
+            _pubSubService.Publish(pdfDocument);
         }
     }
 

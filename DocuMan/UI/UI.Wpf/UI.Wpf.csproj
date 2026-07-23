@@ -25,13 +25,22 @@
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="ADaxer.Pdf.Wpf" />
+    <PackageReference Include="MaterialDesignThemes" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
   </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\..\Infrastructure\Infrastructure.Services\Infrastructure.Services.csproj" />
     <ProjectReference Include="..\UI.Common\UI.Common.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Update="Views\ModuleHostView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

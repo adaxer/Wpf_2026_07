@@ -13,7 +13,7 @@
 
         <ContentControl DockPanel.Dock="Bottom" Content="{Binding StatusBar}"/>
 
-        <Grid Background="LightGreen">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MaxWidth="250" MinWidth="100"/>
                 <ColumnDefinition Width="6" />
@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
             <GridSplitter Grid.Column="1" Width="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" ShowsPreview="True" />
             <ContentControl Grid.Column="0" Content="{Binding Documents}"/>
-            <UserControl Grid.Column="2" Background="#BFED" />
+            <ContentControl Grid.Column="2" Content="{Binding ModuleHost}"/>
         </Grid>
     </DockPanel>
 </Window>

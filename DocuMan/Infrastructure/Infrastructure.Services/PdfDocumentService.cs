@@ -1,7 +1,7 @@
-﻿using Domain.Models;
-using Domain.Models.Interfaces;
+﻿using DocuMan.Domain.Models;
+using DocuMan.Domain.Models.Interfaces;
 
-namespace Infrastructure.Services;
+namespace DocuMan.Infrastructure.Services;
 
 public class PdfDocumentService : IPdfDocumentService
 {
