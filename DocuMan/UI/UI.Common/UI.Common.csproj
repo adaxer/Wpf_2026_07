@@ -9,4 +9,8 @@
     <PackageReference Include="CommunityToolkit.Mvvm" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\Domain.Models\Domain.Models.csproj" />
+  </ItemGroup>
+
 </Project>

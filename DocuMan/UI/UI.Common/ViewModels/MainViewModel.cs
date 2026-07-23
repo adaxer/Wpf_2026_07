@@ -7,9 +7,12 @@ namespace DocuMan.UI.Common.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-    public MainViewModel(StatusBarViewModel statusBar, IPubSubService pubSubService)
+    private readonly IPubSubService _pubSubService;
+   
+    public MainViewModel(StatusBarViewModel statusBar, DocumentsViewModel documents, IPubSubService pubSubService)
     {
         StatusBar = statusBar;
+        Documents = documents;
         _pubSubService = pubSubService;
         _pubSubService.Publish(new StatusMessage("MainViewModel Ready"));
         Title = "DocuMan";
@@ -17,5 +20,8 @@ public partial class MainViewModel : ViewModelBase
 
     [ObservableProperty]
     private StatusBarViewModel _statusBar;
-    private readonly IPubSubService _pubSubService;
+
+    [ObservableProperty]
+    private DocumentsViewModel _documents;
+
 }

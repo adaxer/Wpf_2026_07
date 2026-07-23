@@ -1,4 +1,10 @@
 <Solution>
+  <Folder Name="/Domain/">
+    <Project Path="Domain/Domain.Models/Domain.Models.csproj" Id="b5f12fdc-112a-4f69-8cbb-c13bbbabcd79" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="Infrastructure/Infrastructure.Services/Infrastructure.Services.csproj" Id="87bbbbb6-5fe9-4d39-88be-f5bbe8dbd743" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".gitignore" />
