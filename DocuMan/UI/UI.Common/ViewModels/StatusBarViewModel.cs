@@ -1,18 +1,23 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 
 using DocuMan.UI.Common.Interfaces;
+using DocuMan.UI.Common.Messages;
 
 namespace DocuMan.UI.Common.ViewModels;
 
-public partial class StatusBarViewModel : ViewModelBase
+public partial class StatusBarViewModel : ViewModelBase, IRecipient<StatusMessage>
 {
-    private readonly IPubSubService _pubSubService;
-
     public StatusBarViewModel(IPubSubService pubSubService)
     {
-        _pubSubService = pubSubService;
+        pubSubService.Subscribe<StatusMessage>(this);
     }
 
     [ObservableProperty]
     private string _statusMessage = string.Empty;
+
+    public void Receive(StatusMessage message)
+    {
+        StatusMessage = message.Message;
+    }
 }

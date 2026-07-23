@@ -12,7 +12,7 @@ public class DesignStatusBarViewModel : StatusBarViewModel
 
 public class DesignMainViewModel : MainViewModel
 {
-    public DesignMainViewModel() : base(new DesignStatusBarViewModel())
+    public DesignMainViewModel() : base(new DesignStatusBarViewModel(), new WpfPubSubService())
     {
     }
 }
