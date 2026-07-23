@@ -7,7 +7,23 @@
     <RootNamespace>DocuMan.UI.Wpf</RootNamespace>
     <AssemblyName>DocuMan.UI.Wpf</AssemblyName>
   </PropertyGroup>
-
+  
+  <ItemGroup Condition="'$(Configuration)' == 'Release'">
+    <Compile Remove="DesignData\**\*.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Page Remove="DesignData\DesignMainViewModel.xaml" />
+    <Page Remove="DesignData\DesignStatusBarViewModel.xaml" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <DesignData Include="DesignData\DesignMainViewModel.xaml">
+      <Generator></Generator>
+    </DesignData>
+    <DesignData Include="DesignData\DesignStatusBarViewModel.xaml" />
+  </ItemGroup>
+  
   <ItemGroup>
     <ProjectReference Include="..\UI.Common\UI.Common.csproj" />
   </ItemGroup>

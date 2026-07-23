@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 
-using DocuMan.UI.Common.ViewModels;
-
 namespace DocuMan.UI.Wpf.Views;
 /// <summary>
 /// Interaction logic for MainWindow.xaml

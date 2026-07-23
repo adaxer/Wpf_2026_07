@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M08_Templates"
         mc:Ignorable="d"
-        Title="MainWindow" Height="467" Width="544.972" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" d:DesignHeight="800"  Height="467" Width="544.972" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Template">
@@ -22,7 +22,8 @@
                                 Background="{TemplateBinding Background}">
                             <!--Statt dem ContentPresenter kann z.B. ein TextBlock verwendet werden, wenn auf spezielle Eigenschaften,
                                     wie z.B. die FontSize eingegangen werden soll-->
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <ContentPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              Margin="{TemplateBinding Padding}"/>
                         </Border>
 
                         <ControlTemplate.Triggers>
@@ -60,9 +61,16 @@
 
     <StackPanel>
         <!--Control-Template-Bsp-Button-->
-        <Button Content="Klick mich!!" Height="100" Width="100" 
-                x:Name="Btn_ControlTemplate" Click="Btn_ControlTemplate_Click"
-                Background="Aqua"/>
+        <Button Height="150" Width="150" HorizontalContentAlignment="Left" 
+                x:Name="Btn_ControlTemplate" Click="Btn_ControlTemplate_Click" Padding="8"
+                Background="Aqua">
+            <Button.Content>
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse Width="16" Height="16" Fill="Green"/>
+                    <TextBlock Margin="10" Text="ControlTemplate" FontSize="12"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
 
         <!--DataTemplate-Bsp-->
         <ListBox x:Name="Lbx_Personen" Height="100" ItemsSource="{Binding Personenliste}"
@@ -84,6 +92,14 @@
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+
+            <ListBox.ItemsPanel>
+                <!--ItemsPanelTemplate definiert das Layout der Items in einem ItemControl. Hierbei kann jedes beliebige Panel verwendet werden.
+                    Die Bindung an die ItemSource erfolgt automatisch-->
+                <ItemsPanelTemplate>
+                    <WrapPanel MaxWidth="800"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
         </ListBox>
         <Button x:Name="Btn_Neu" Content="Neue Person" Click="Btn_Neu_Click"/>
         <Button x:Name="Btn_Loeschen_01" Content="Lösche Person" Click="Btn_Loeschen_01_Click"/>
@@ -120,5 +136,7 @@
             <Button Content="Änderungen speichern" x:Name="Btn_SaveXml" Click="Btn_SaveXml_Click"/>
 
         </StackPanel>
+
+        <local:Clock Height="20" Width="200"  BorderThickness="4" BorderBrush="Blue"/>
     </StackPanel>
 </Window>

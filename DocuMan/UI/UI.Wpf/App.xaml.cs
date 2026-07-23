@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 
 using DocuMan.UI.Common.ViewModels;
+using DocuMan.UI.Wpf.Services;
 using DocuMan.UI.Wpf.Views;
 
 namespace DocuMan.UI.Wpf;
@@ -12,7 +13,7 @@ public partial class App : Application
     protected override void OnStartup(StartupEventArgs e)
     {
         MainWindow = new MainWindow();
-        MainWindow.DataContext = new MainViewModel();
+        MainWindow.DataContext = new MainViewModel(new StatusBarViewModel(new WpfPubSubService()));
         MainWindow.Show();
         base.OnStartup(e);
     }
