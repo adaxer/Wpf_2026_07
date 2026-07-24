@@ -17,14 +17,14 @@
                    Height="90"
                    Width="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Height}"/>
 
-        <StackPanel Background="LightBlue" Margin="30">
+        <StackPanel Background="Blue" Margin="30">
             <StackPanel Background="Yellow" Margin="30">
                 <StackPanel Background="Green" Margin="30" Height="100">
                     <!--Mittels dem Mode=FindAncestor kann eine Property an eine Property eines hirachisch übergeordneten
                     Objekts gebunden werden. Mittels der Property 'AnchestorType' kann die Art des Objekts definiert werden 
                     und mittels 'AnchestorLevel' kann die Ebene des Objekts bestimmt werden-->
                     <Button Content="Hallo"
-                            Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}, AncestorLevel=3}, Path=Background}"/>
+                            Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type StackPanel}, AncestorLevel=3}, Path=Background}"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>
@@ -33,10 +33,10 @@
 
         <ListBox>
             <ListBox.Items>
-                <t:Person Nachname="Meier" Alter="56"/>
-                <t:Person Nachname="Schmidt" Alter="12"/>
-                <t:Person Nachname="Fischer" Alter="34"/>
-                <t:Person Nachname="Müller" Alter="78"/>
+                <local:Person Nachname="Meier" Alter="56"/>
+                <local:Person Nachname="Schmidt" Alter="12"/>
+                <local:Person Nachname="Fischer" Alter="34"/>
+                <local:Person Nachname="Müller" Alter="78"/>
             </ListBox.Items>
             <ListBox.ItemTemplate>
                 <DataTemplate>

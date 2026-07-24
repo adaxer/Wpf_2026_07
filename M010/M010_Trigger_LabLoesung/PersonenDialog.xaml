@@ -94,7 +94,7 @@
                     SelectedDate="{Binding Geburtsdatum, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  Validation.ErrorTemplate="{StaticResource CtpError}"/>
 
-        <CheckBox x:Name="Cbx_Verheiratet"
+        <CheckBox x:Name="Cbx_Verheiratet" HorizontalAlignment="Left"
                   Grid.Column="1" Grid.Row="3"
                   IsChecked="{Binding Verheiratet}"/>
 

@@ -57,13 +57,30 @@
                 <EasingPointKeyFrame KeyTime="00:00:03" Value="0.5,0.5"/>
                 <EasingPointKeyFrame KeyTime="00:00:04" Value="0.491,0.599"/>
             </PointAnimationUsingKeyFrames>
+            
+            
+            <DoubleAnimationUsingPath BeginTime="00:00:05" Duration="00:00:02" Source="X" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                <DoubleAnimationUsingPath.PathGeometry>
+                    <PathGeometry Figures="M-21.039998,86.37562 C-21.039998,86.37562 156.32225,148.34694 131.64774,58.226682 C106.97322,-31.893574 108.0364,-59.480314 213.95999,-60.848999"/>
+                </DoubleAnimationUsingPath.PathGeometry>
+            </DoubleAnimationUsingPath>
+            <DoubleAnimationUsingPath BeginTime="00:00:05" Duration="00:00:02" Source="Y" Storyboard.TargetName="rectangle" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                <DoubleAnimationUsingPath.PathGeometry>
+                    <PathGeometry Figures="M-21.039998,86.37562 C-21.039998,86.37562 156.32225,148.34694 131.64774,58.226682 C106.97322,-31.893574 108.0364,-59.480314 213.95999,-60.848999"/>
+                </DoubleAnimationUsingPath.PathGeometry>
+            </DoubleAnimationUsingPath>
+       
         </Storyboard>
     </Window.Resources>
 
     <Canvas x:Name="Cvs_Main" Background="DarkCyan">
 
+        <Expander Style="{DynamicResource ExpanderStyle1}" Canvas.Bottom="0" Header="Hello">
+            <Button Content="Im Expander"/>
+        </Expander>
+
         <!--Manuelle (Nicht-BLEND) Storyboards-->
-        
+
         <Button Content="Klick Mich"
                 x:Name="Btn_KlickMich"
                 Canvas.Left="50"
@@ -81,7 +98,11 @@
                             <DoubleAnimation Storyboard.TargetProperty="(Canvas.Top)"
                                              To="600"
                                              Duration="0:0:1.5"
-                                             AutoReverse="True"/>
+                                             AutoReverse="True">
+                                <DoubleAnimation.EasingFunction>
+                                    <QuinticEase EasingMode="EaseInOut"/>
+                                </DoubleAnimation.EasingFunction>
+                            </DoubleAnimation>
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
@@ -105,7 +126,7 @@
                 </EventTrigger>
             </Button.Triggers>
         </Button>
-        
+
         <!--Objekte für BLEND-Storyboard-->
 
         <TextBlock x:Name="textBlock" Text="Moving Text" Foreground="Red" FontSize="20" Canvas.Left="80" Canvas.Top="85" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
@@ -120,7 +141,7 @@
                 </TransformGroup>
             </TextBlock.RenderTransform>
         </TextBlock>
-        <Button x:Name="button" Content="Rotating Button" Canvas.Left="32" Canvas.Top="111" RenderTransformOrigin="0.5,0.5">
+        <Button Style="{DynamicResource ButtonStyle1}" x:Name="button" Content="Rotating Button" Canvas.Left="32" Canvas.Top="111" RenderTransformOrigin="0.5,0.5">
             <Button.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -136,6 +157,61 @@
             </Button.Triggers>
         </Button>
 
+        <Ellipse x:Name="Ball"
+             Width="30"
+             Height="30"
+             Fill="Red"/>
+        <Rectangle x:Name="rectangle" Height="23" Canvas.Left="93.215" Stroke="Black" Canvas.Top="281.504" Width="28" Fill="#FF5ABB4A" RenderTransformOrigin="0.5,0.5">
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Path Fill="{x:Null}" Height="169" Canvas.Left="85.675" Stroke="Black" Stretch="Fill" Canvas.Top="231.655" Width="236">
+            <Path.Data>
+                <PathGeometry Figures="M85.67512,379.17365 C85.67512,379.17365 263.03679,441.38749 238.36235,350.91456 213.68792,260.44163 214.7511,232.74694 320.67433,231.3729"/>
+            </Path.Data>
+        </Path>
+
+        <Canvas.Resources>
+            <PathGeometry x:Key="MotionPath">
+                <PathFigure StartPoint="50,50">
+                    <BezierSegment Point1="150,0"
+                               Point2="300,300"
+                               Point3="500,100"/>
+                </PathFigure>
+            </PathGeometry>
+        </Canvas.Resources>
+        <Canvas.Triggers>
+            <EventTrigger RoutedEvent="MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+
+                        <!-- X -->
+                        <DoubleAnimationUsingPath
+                        Storyboard.TargetName="Ball"
+                        Storyboard.TargetProperty="(Canvas.Left)"
+                        PathGeometry="{StaticResource MotionPath}"
+                        Source="X"
+                        Duration="0:0:3"/>
+
+                        <!-- Y -->
+                        <DoubleAnimationUsingPath
+                        Storyboard.TargetName="Ball"
+                        Storyboard.TargetProperty="(Canvas.Top)"
+                        PathGeometry="{StaticResource MotionPath}"
+                        Source="Y"
+                        Duration="0:0:3"/>
+
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Canvas.Triggers>
     </Canvas>
+    
 
 </Window>

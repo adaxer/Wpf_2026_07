@@ -3,7 +3,7 @@
 namespace M16_Animations;
 
 /// <summary>
-/// Interaction logic for App.xaml
+/// Interaction logic for the App.xaml
 /// </summary>
 public partial class App : Application
 {
