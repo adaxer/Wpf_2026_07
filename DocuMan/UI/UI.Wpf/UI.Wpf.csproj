@@ -8,22 +8,6 @@
     <AssemblyName>DocuMan.UI.Wpf</AssemblyName>
   </PropertyGroup>
   
-  <ItemGroup Condition="'$(Configuration)' == 'Release'">
-    <Compile Remove="DesignData\**\*.cs" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Page Remove="DesignData\DesignMainViewModel.xaml" />
-    <Page Remove="DesignData\DesignStatusBarViewModel.xaml" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <DesignData Include="DesignData\DesignMainViewModel.xaml">
-      <Generator></Generator>
-    </DesignData>
-    <DesignData Include="DesignData\DesignStatusBarViewModel.xaml" />
-  </ItemGroup>
-  
   <ItemGroup>
     <PackageReference Include="ADaxer.MvvmNav.Wpf" />
     <PackageReference Include="ADaxer.Pdf.Wpf" />
@@ -31,6 +15,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="Microsoft.Extensions.Hosting" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" />
+    <PackageReference Include="NSubstitute" />
   </ItemGroup>
   
   <ItemGroup>

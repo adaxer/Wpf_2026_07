@@ -6,7 +6,7 @@
              xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
              xmlns:controls="clr-namespace:DocuMan.UI.Wpf"
              mc:Ignorable="d" MinWidth="400" MinHeight="100" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="100" d:DesignWidth="413.5">
     <StackPanel Grid.IsSharedSizeScope="False">
         <controls:LabelAndUnit Label="Username eingeben:" Margin="5">
             <TextBox materialDesign:HintAssist.Hint="Name" materialDesign:TextFieldAssist.HasClearButton="True" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />

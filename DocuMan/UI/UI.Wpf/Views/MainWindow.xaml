@@ -6,9 +6,10 @@
         mc:Ignorable="d"
         xmlns:v="clr-namespace:ADaxer.MvvmNav.Wpf.Views;assembly=ADaxer.MvvmNav.Wpf"
         xmlns:vm="clr-namespace:DocuMan.UI.Common.ViewModels;assembly=DocuMan.UI.Common"
+        xmlns:design="clr-namespace:DocuMan.UI.Wpf.DesignData"
         xmlns:c="clr-namespace:ADaxer.MvvmNav.Wpf.Converters;assembly=ADaxer.MvvmNav.Wpf"
         Title="{Binding Title}" Height="450" Width="800" MinWidth="420" MinHeight="300"
-        d:DataContext="{d:DesignData Source=/DesignData/DesignMainViewModel.xaml}">
+        d:DataContext="{x:Static design:ViewModelLocator.Main}">
 
     <Window.Resources>
         <c:TruthyToVisibilityConverter x:Key="TruthyToVisibilityConverter" />

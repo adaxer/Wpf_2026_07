@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:DocuMan.UI.Common.ViewModels;assembly=DocuMan.UI.Common"
              mc:Ignorable="d" 
-             d:DesignHeight="27.809" d:DesignWidth="822.753">
+             d:DesignHeight="40" d:DesignWidth="800">
     <DockPanel LastChildFill="False">
         <Button Margin="8,4" Content="Login" Command="{Binding LoginCommand}" DockPanel.Dock="Left" />
     </DockPanel>

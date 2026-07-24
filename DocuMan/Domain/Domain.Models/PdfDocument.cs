@@ -2,7 +2,7 @@
 
 public record class PdfDocument(string Name, string FilePath)
 {
-    public byte[]? Bytes { get; private set; }
+    public byte[]? Bytes { get; set; }
 
     public async Task<byte[]> LoadAsync()
     {

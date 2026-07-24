@@ -79,12 +79,12 @@
         <TextBlock Text="Geschlecht:" 
                    Grid.Row="5"/>
 
-        <TextBox x:Name="Tbx_Vorname"
-                 Grid.Column="1"
+        <TextBox x:Name="Tbx_Vorname" KeyboardNavigation.TabIndex="1" 
+                 Grid.Column="1" 
                  Text="{Binding Vorname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  Validation.ErrorTemplate="{StaticResource CtpError}"/>
 
-        <TextBox x:Name="Tbx_Nachname"
+        <TextBox x:Name="Tbx_Nachname" KeyboardNavigation.TabIndex="0" 
                  Grid.Column="1" Grid.Row="1"
                  Text="{Binding Nachname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                  Validation.ErrorTemplate="{StaticResource CtpError}"/>
