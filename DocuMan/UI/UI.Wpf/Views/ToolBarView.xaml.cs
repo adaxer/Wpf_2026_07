@@ -2,11 +2,11 @@
 
 namespace DocuMan.UI.Wpf.Views;
 /// <summary>
-/// Interaction logic for ModuleHostView.xaml
+/// Interaction logic for ToolBarView.xaml
 /// </summary>
-public partial class ModuleHostView : UserControl
+public partial class ToolBarView : UserControl
 {
-    public ModuleHostView()
+    public ToolBarView()
     {
         InitializeComponent();
     }

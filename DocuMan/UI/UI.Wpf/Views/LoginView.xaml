@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="DocuMan.UI.Wpf.Views.LoginView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:controls="clr-namespace:DocuMan.UI.Wpf"
+             mc:Ignorable="d" MinWidth="400" MinHeight="100" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <StackPanel Grid.IsSharedSizeScope="False">
+        <controls:LabelAndUnit Label="Username eingeben:" Margin="5">
+            <TextBox materialDesign:HintAssist.Hint="Name" materialDesign:TextFieldAssist.HasClearButton="True" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
+        </controls:LabelAndUnit>
+        <controls:LabelAndUnit Label="Password:"  Margin="5">
+            <PasswordBox materialDesign:HintAssist.Hint="Passwort" materialDesign:TextFieldAssist.HasClearButton="True"  />
+        </controls:LabelAndUnit>
+    </StackPanel>
+</UserControl>

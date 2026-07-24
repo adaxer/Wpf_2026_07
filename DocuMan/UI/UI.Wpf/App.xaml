@@ -7,19 +7,25 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="BlueGrey" SecondaryColor="Yellow" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Yellow" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign2.Defaults.xaml" />
-
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.SplitButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
             <DataTemplate DataType="{x:Type vm:StatusBarViewModel}">
                 <v:StatusBarView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:ToolBarViewModel}">
+                <v:ToolBarView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:PdfDocumentViewModel}">
+                <v:PdfDocumentView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type vm:DocumentListViewModel}">
                 <v:DocumentListView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type vm:ModuleHostViewModel}">
-                <v:ModuleHostView />
+            <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+                <v:LoginView />
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
 
+using ADaxer.MvvmNav.Abstractions.Navigation;
+
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 
@@ -14,11 +16,13 @@ public partial class DocumentListViewModel : ViewModelBase
 {
     private readonly IPdfDocumentService _pdfDocumentService;
     private readonly IPubSubService _pubSubService;
+    private readonly INavigationService _navigationService;
 
-    public DocumentListViewModel(IPdfDocumentService pdfDocumentService, IPubSubService pubSubService)
+    public DocumentListViewModel(IPdfDocumentService pdfDocumentService, IPubSubService pubSubService, INavigationService navigationService)
     {
         _pdfDocumentService = pdfDocumentService;
         _pubSubService = pubSubService;
+        _navigationService = navigationService;
         GetDocuments();
     }
 
@@ -43,13 +47,19 @@ public partial class DocumentListViewModel : ViewModelBase
         }
     }
 
-    [RelayCommand]
-    public void ShowDocument(ItemViewModel container)
+    [RelayCommand(CanExecute = nameof(CanShowDocument))]
+    public async Task ShowDocument(ItemViewModel container)
     {
         if (container.Item is PdfDocument pdfDocument)
         {
-            _pubSubService.Publish(pdfDocument);
+            await _navigationService.NavigateAsync<PdfDocumentViewModel>(("PdfDocument", pdfDocument));
         }
+    }
+
+    // CanExecute soll schnell gehen, weil oft aufgerufen
+    private bool CanShowDocument(ItemViewModel container)
+    {
+        return container.Item is PdfDocument;
     }
 
     // public List<PdfDocument> PdfDocuments { get; set; } = new List<PdfDocument>();

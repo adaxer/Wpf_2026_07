@@ -4,10 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        xmlns:v="clr-namespace:ADaxer.MvvmNav.Wpf.Views;assembly=ADaxer.MvvmNav.Wpf"
         xmlns:vm="clr-namespace:DocuMan.UI.Common.ViewModels;assembly=DocuMan.UI.Common"
+        xmlns:c="clr-namespace:ADaxer.MvvmNav.Wpf.Converters;assembly=ADaxer.MvvmNav.Wpf"
         Title="{Binding Title}" Height="450" Width="800" MinWidth="420" MinHeight="300"
         d:DataContext="{d:DesignData Source=/DesignData/DesignMainViewModel.xaml}">
-    
+
+    <Window.Resources>
+        <c:TruthyToVisibilityConverter x:Key="TruthyToVisibilityConverter" />
+    </Window.Resources>
+
     <DockPanel Background="LightGray">
         <ContentControl DockPanel.Dock="Top" Content="{Binding ToolBar}"/>
 
@@ -21,7 +27,12 @@
             </Grid.ColumnDefinitions>
             <GridSplitter Grid.Column="1" Width="6" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" ShowsPreview="True" />
             <ContentControl Grid.Column="0" Content="{Binding Documents}"/>
-            <ContentControl Grid.Column="2" Content="{Binding ModuleHost}"/>
+            <ContentControl Grid.Column="2" Content="{Binding CurrentModule}"/>
+            <Border Background="#80000000" Grid.ColumnSpan="3"
+                    Visibility="{Binding CurrentDialog, Converter={StaticResource TruthyToVisibilityConverter}}">
+                <v:WpfDialogView DataContext="{Binding CurrentDialog}" />
+            </Border>
+
         </Grid>
     </DockPanel>
 </Window>

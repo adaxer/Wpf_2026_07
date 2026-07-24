@@ -25,6 +25,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <PackageReference Include="ADaxer.MvvmNav.Wpf" />
     <PackageReference Include="ADaxer.Pdf.Wpf" />
     <PackageReference Include="MaterialDesignThemes" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
@@ -38,7 +39,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <Compile Update="Views\ModuleHostView.xaml.cs">
+    <Compile Update="Views\ToolBarView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

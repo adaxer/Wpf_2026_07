@@ -1,0 +1,34 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:DocuMan.UI.Wpf">
+
+
+    <Style TargetType="controls:LabelAndUnit">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:LabelAndUnit">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="Label" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="Content" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition SharedSizeGroup="Unit" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{TemplateBinding LabelStyle}" Text="{TemplateBinding Label}" VerticalAlignment="Center" />
+                        <Rectangle Width="{TemplateBinding LabelMargin}" Grid.Column="1" />
+                        <ContentPresenter Grid.Column="2" />
+                        <Rectangle x:Name="UnitSeparator" Width="{TemplateBinding UnitMargin}" Grid.Column="3" />
+                        <TextBlock Text="{TemplateBinding Unit}" Grid.Column="4" VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Unit" Value="{x:Null}">
+                            <Setter Property="Visibility" TargetName="UnitSeparator" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

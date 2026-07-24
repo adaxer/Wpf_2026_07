@@ -1,5 +1,8 @@
 ﻿using System.Windows;
 
+using ADaxer.MvvmNav.Abstractions.Navigation;
+using ADaxer.MvvmNav.Wpf.Hosting;
+
 using DocuMan.Domain.Models.Interfaces;
 using DocuMan.Infrastructure.Services;
 using DocuMan.UI.Common.Interfaces;
@@ -17,39 +20,33 @@ namespace DocuMan.UI.Wpf;
 /// </summary>
 public partial class App : Application
 {
-    private static readonly IHost _host = CreateHost();
+    private static WpfNavigationHost? _host;
 
-    private static IHost CreateHost()
+    private void ConfigureServices(IServiceCollection services)
     {
-        var builder = Host.CreateApplicationBuilder();
+        services.AddSingleton<MainWindow>();
+        services.AddSingleton<MainViewModel>();
+        services.AddSingleton<StatusBarViewModel>();
+        services.AddSingleton<ToolBarViewModel>();
+        services.AddSingleton<DocumentListViewModel>();
+        services.AddTransient<PdfDocumentViewModel>();
+        services.AddTransient<LoginViewModel>();
 
-        builder.Services.AddSingleton<MainWindow>();
-        builder.Services.AddSingleton<MainViewModel>();
-        builder.Services.AddSingleton<StatusBarViewModel>();
-        builder.Services.AddSingleton<ModuleHostViewModel>();
-        builder.Services.AddSingleton<DocumentListViewModel>();
-
-        builder.Services.AddTransient<IPdfDocumentService,PdfDocumentService>();
-        builder.Services.AddSingleton<IPubSubService, WpfPubSubService>();  // Besser Singleton, weil Registrierung von EventHandlern usw.
-
-        return builder.Build();
+        services.AddTransient<IPdfDocumentService,PdfDocumentService>();
+        services.AddSingleton<IPubSubService, WpfPubSubService>();  // Besser Singleton, weil Registrierung von EventHandlern usw.
     }
-    protected override void OnStartup(StartupEventArgs e)
+
+    protected override async void OnStartup(StartupEventArgs e)
     {
-        _host.Start();
+        _host = WpfNavigationHostBuilder
+            .Default()
+            .WithShell<MainWindow, MainViewModel>()
+            .WithServices(ConfigureServices)
+            .WithDialogMode(DialogMode.Window)
+            .Build();
 
-        MainWindow = _host.Services.GetRequiredService<MainWindow>();
-        MainWindow.DataContext = _host.Services.GetRequiredService<MainViewModel>();
-        MainWindow.Show();
-
+        await _host.StartAsync();
         base.OnStartup(e);
     }
 
-    protected override async void OnExit(ExitEventArgs e)
-    {
-        await _host.StopAsync();
-        _host.Dispose();
-
-        base.OnExit(e);
-    }
 }
