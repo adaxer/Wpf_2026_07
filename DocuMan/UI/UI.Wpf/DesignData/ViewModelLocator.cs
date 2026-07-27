@@ -4,10 +4,8 @@ using ADaxer.MvvmNav.Abstractions.Navigation;
 
 using DocuMan.Domain.Models;
 using DocuMan.Domain.Models.Interfaces;
-using DocuMan.Infrastructure.Services;
 using DocuMan.UI.Common.Interfaces;
 using DocuMan.UI.Common.ViewModels;
-using DocuMan.UI.Wpf.Services;
 
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,8 +15,19 @@ namespace DocuMan.UI.Wpf.DesignData;
 
 public static class ViewModelLocator
 {
-    private static readonly ServiceProvider s_services = new ServiceCollection().Configure().BuildServiceProvider();
+    private static readonly ServiceProvider s_services = default!;
 
+    // Switch DebugMode, dann funktioniert der Release-Build trotzdem, und Speicher ist gespart 
+
+#if DEBUG
+    static ViewModelLocator()
+    {
+        s_services = new ServiceCollection().Configure().BuildServiceProvider();
+    }
+
+    // Service Collection mit Mock-Services für DesignData, dann müssen nicht bei jeder Änderung die Aufrufe der ctors angepasst werden
+    // Für Mock-Services wird NSubstitute verwendet, siehe https://nsubstitute.github.io/help/getting-started/
+    // Dieses ist nicht nur für Unit-Tests geeignet, sondern auch für DesignData
     private static IServiceCollection Configure(this IServiceCollection services)
     {
         services.AddSingleton(Substitute.For<IPubSubService>());
@@ -35,6 +44,7 @@ public static class ViewModelLocator
         
         services.AddSingleton(pdfMock);
 
+        // Pdf-Demofile wird nicht in Projekt-Output kopiert, belegt nur hier Speicher
         var path = Path.Combine(Directory.GetCurrentDirectory(), "UI", "UI.Wpf", "DesignData", "PdfDemo.pdf");
         var pdfDoc = new PdfDocument("", "") { Bytes = File.ReadAllBytes(path) };
 
@@ -45,6 +55,7 @@ public static class ViewModelLocator
         services.AddTransient<MainViewModel>();
         return services;
     }
+#endif
 
     public static StatusBarViewModel StatusBar => s_services.GetRequiredService<StatusBarViewModel>();
 
